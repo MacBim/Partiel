@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Demande d'intervention</title>
+</head>
+<body>
+<div>
+    <header>
+        <h1>Demande d'intervention</h1>
+    </header>
+    <div class="form">
+        <form method="post" action="recap.php">
+            <p>
+                <span>Votre nom :</span>
+                <input type="text" name="nom">
+            </p>
+            <p>
+                <span>Bureau n° :</span>
+                <input type="text" name="salle">
+            </p>
+            <span>Votre problème concerne :</span>
+            <p>
+                <input type="radio" name="probleme" value="1" checked>Un ou plusieurs ordinateur(s)</br>
+                <input type="radio" name="probleme" value="2">Tous les ordinateurs</br>
+                <input type="radio" name="probleme" value="3">Une imprimante</br>
+                <input type="radio" name="probleme" value="4">Autre</br>
+            </p>
+            <p>
+                <span>Eventuellement, saissiez le ou les numéro(s) d'ordinateurs(s) qui vous pose(nt) un
+                problème</span>
+                <input type="text" name="num_pc">
+            </p>
+            <p>Décrivez précisément votre problème : </p>
+            <textarea name="remarques" rows="4" cols="50"></textarea><br>
+            <input type="submit" value="Valider">
+        </form>
+    </div>
+</div>
+</body>
+</html>
