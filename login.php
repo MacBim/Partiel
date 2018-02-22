@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // si on viens de charger la page av
             session_start();
             $_SESSION["authenticated"] = true;
             header("Location: suivi.php");
-        } else {
+        } else { // si l'utilisateur n'est pas reconnu, on re-dirige vers la page de login
             header("Location: login.php");
         }
     } else {
