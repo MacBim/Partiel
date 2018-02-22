@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // si on viens de charger la page av
     if (!empty($_POST["login"]) && !empty($_POST["password"])) { // si les champs son rensigné
         $myPDO = new MyPDO("mysql:host=$servername;dbname=$dbName", $username, $password);
         $formUsername = $_POST["login"]; // login saisi
-        $formPassword = md5($_POST["password"]); // mot de passe saisi
+        $formPassword = $_POST["password"]; // mot de passe saisi
         if ($myPDO->checkUser($formUsername, $formPassword)) { // si ces ids correspondent a un utilisateur
             session_start();
             $_SESSION["authenticated"] = true;
