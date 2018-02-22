@@ -39,13 +39,13 @@ $myPDO = new MyPDO("mysql:host=$servername;dbname=$dbName", $username, $password
         <th>Suivi</th>
     </tr>
     <?php
-        $query = "SELECT * FROM interventions";
+        $query = "SELECT * FROM interventions ORDER BY num desc";
         $res = $myPDO->query($query);
-        while($row = $res->fetch(PDO::FETCH_ASSOC)){
+        while($row = $res->fetch(PDO::FETCH_ASSOC)){ // le resultat de la requete est retourné dans un tableau associatif
             echo "<tr>";
             echo "<td>Voir</td>";
             foreach ($row as $key => $elem){
-                if($key == "etat"){
+                if($key == "etat"){ // dans la BDD, 0 = En cours, et 1 = Réparé
                     if($elem == 0){
                         $elem = "En cours";
                     } else {
