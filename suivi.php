@@ -5,6 +5,9 @@
  * Date: 22/02/2018
  * Time: 15:48
  */
+
+
+
 session_start();
 if(empty($_SESSION["authenticated"]) || $_SESSION["authenticated"] != 'true') {
     header('Location: login.php');
@@ -17,6 +20,11 @@ $password = MyPDO::PASSWORD;
 $dbName = MyPDO::DATABASE_NAME;
 
 $myPDO = new MyPDO("mysql:host=$servername;dbname=$dbName", $username, $password);
+
+if(!empty($_POST["updateID"])){
+    $query = "UPDATE interventions SET etat=1 WHERE num='".$_POST["updateID"]."'";
+    $myPDO->exec($query);
+}
 ?>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -43,7 +51,12 @@ $myPDO = new MyPDO("mysql:host=$servername;dbname=$dbName", $username, $password
         $res = $myPDO->query($query);
         while($row = $res->fetch(PDO::FETCH_ASSOC)){ // le resultat de la requete est retourné dans un tableau associatif
             echo "<tr>";
-            echo "<td>Voir</td>";
+            echo "<td><form method='post' action=''>
+                        <input type='hidden' name='updateID' value='".$row["num"]."'>
+                        <input type='submit' value='Voir'> 
+                        
+                        </form>
+                        </td>";
             foreach ($row as $key => $elem){
                 if($key == "etat"){ // dans la BDD, 0 = En cours, et 1 = Réparé
                     if($elem == 0){
